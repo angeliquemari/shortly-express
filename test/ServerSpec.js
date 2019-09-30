@@ -39,8 +39,8 @@ describe('', function() {
     /* TODO: Update user and password if different than on your local machine            */
     /*************************************************************************************/
     db = mysql.createConnection({
-      user: 'student',
-      password: 'student',
+      user: 'root',
+      password: 'chatterbox',
       database: 'shortly'
     });
 
@@ -480,7 +480,7 @@ describe('', function() {
     });
   });
 
-  xdescribe('Sessions and cookies', function() {
+  describe('Sessions and cookies', function() {
     var requestWithSession;
     var cookieJar;
 
@@ -517,7 +517,7 @@ describe('', function() {
       });
     });
 
-    it('sets and stores a cookie on the client', function(done) {
+    xit('sets and stores a cookie on the client', function(done) {
       requestWithSession('http://127.0.0.1:4568/', function(error, res, body) {
         if (error) { return done(error); }
         var cookies = cookieJar.getCookies('http://127.0.0.1:4568/');
@@ -526,7 +526,7 @@ describe('', function() {
       });
     });
 
-    it('assigns session to a user when user logs in', function(done) {
+    xit('assigns session to a user when user logs in', function(done) {
       addUser(function(err, res, body) {
         if (err) { return done(err); }
         var cookies = cookieJar.getCookies('http://127.0.0.1:4568/');
@@ -546,7 +546,7 @@ describe('', function() {
       });
     });
 
-    it('destroys session and cookie when logs out', function(done) {
+    xit('destroys session and cookie when logs out', function(done) {
       addUser(function(err, res, body) {
         if (err) { return done(err); }
         var cookies = cookieJar.getCookies('http://127.0.0.1:4568/');
