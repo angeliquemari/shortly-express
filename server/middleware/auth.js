@@ -1,7 +1,7 @@
 const models = require('../models');
 var cookieParser = require('./cookieParser.js');
 
-module.exports.createSession = (req, res, next) => {
+module.exports.createSession = (req, res, next = () => {}) => {
   req.session = {};
   cookieParser(req, res, () => {
     // if no cookie, create session and add cookie to response, sesssion to req
@@ -11,6 +11,7 @@ module.exports.createSession = (req, res, next) => {
           models.Sessions.get({id: data.insertId})
             .then( (data) => {
               req.session.hash = data.hash;
+              res.cookies = res.cookies || {};
               res.cookies['shortlyid'] = {value: data.hash};
               next();
             });
